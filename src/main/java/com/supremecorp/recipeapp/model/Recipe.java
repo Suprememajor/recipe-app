@@ -19,6 +19,8 @@ public class Recipe {
     private Integer prepTime;
     private Integer cookTime;
     private Integer servings;
+
+    @Enumerated(value = EnumType.STRING)
     private Difficulty difficulty;
 
     @OneToOne(cascade = CascadeType.ALL)
