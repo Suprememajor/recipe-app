@@ -1,10 +1,21 @@
 package com.supremecorp.recipeapp.model;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.Hibernate;
+
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
  * Created by suprememajor on the 9/10/21
  */
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 public class Notes {
     @Id
@@ -17,27 +28,16 @@ public class Notes {
     @Lob
     private String recipeNotes;
 
-    public Long getId() {
-        return id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Notes notes = (Notes) o;
+        return Objects.equals(id, notes.id);
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
-    public String getRecipeNotes() {
-        return recipeNotes;
-    }
-
-    public void setRecipeNotes(String recipeNotes) {
-        this.recipeNotes = recipeNotes;
+    @Override
+    public int hashCode() {
+        return 0;
     }
 }
